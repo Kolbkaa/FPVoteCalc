@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Voters.cs" />
     <Compile Include="Tools\Pesel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Page Include="LoginWindows.xaml">
