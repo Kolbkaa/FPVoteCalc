@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VoteCalc.Tools;
+using VoteCalc.ViewModel;
 
 namespace VoteCalc
 {
@@ -20,9 +22,19 @@ namespace VoteCalc
     /// </summary>
     public partial class MainWindow : Window
     {
+        private LoginViewModel _loginViewModel;
         public MainWindow()
         {
+             _loginViewModel = new LoginViewModel();
+             this.DataContext = _loginViewModel;
             InitializeComponent();
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            var data = Pesel.BirthdayDateTimeFromPesel(_loginViewModel.Pesel);
         }
     }
 }
