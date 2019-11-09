@@ -6,12 +6,42 @@
         xmlns:local="clr-namespace:VoteCalc"
         mc:Ignorable="d"
         Title="StatisticWindow" Height="450" Width="800">
-    <StackPanel>
-        <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
-        <WrapPanel Margin="10">
-            <Label></Label>
-            <Label></Label>
-            <Label></Label>
-        </WrapPanel>
-    </StackPanel>
+    <ScrollViewer>
+        <StackPanel>
+            <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
+            <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
+            <WrapPanel Margin="10" HorizontalAlignment="Stretch">
+                <Label Content="{Binding Path=AllValidVote}"></Label>
+                <Label Content="{Binding Path=AllInvalidVote}"></Label>
+                <Label Content="{Binding Path=AllVote}"></Label>
+            </WrapPanel>
+            <WrapPanel>
+                <ItemsControl Name="Candidate">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
+                                <WrapPanel >
+                                    <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Label Width="100" Content="{Binding Path=Value}"></Label>
+                                </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl Name="Party">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
+                                <WrapPanel >
+                                    <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Label Width="100" Content="{Binding Path=Value}"></Label>
+
+                                </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

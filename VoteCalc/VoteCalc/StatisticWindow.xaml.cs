@@ -20,12 +20,24 @@ namespace VoteCalc
     /// </summary>
     public partial class StatisticWindow : Window
     {
-        private StatisticViewModel statisticModel;
+        private StatisticViewModel _statisticModel;
         public StatisticWindow()
         {
-            statisticModel = new StatisticViewModel();
-            this.DataContext = statisticModel;
+            _statisticModel = new StatisticViewModel();
+            this.DataContext = _statisticModel;
             InitializeComponent();
+            Candidate.ItemsSource = _statisticModel.CandidateStatistic;
+            Party.ItemsSource = _statisticModel.PartyStatistic;
+        }
+
+       
+
+        private void LogOff_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginWindows = new MainWindow();
+            loginWindows.Show();
+            this.Close();
+            App.Current.Windows[0].Close();
         }
     }
 }

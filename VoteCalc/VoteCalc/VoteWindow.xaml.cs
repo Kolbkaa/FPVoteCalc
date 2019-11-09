@@ -63,12 +63,9 @@ namespace VoteCalc
   
             }
 
-
-
             
             var vote = new Vote();
-            vote.ValidVote = validVote;
-            vote.Voters = _voter;
+            
             if (_voteViewModel.Candidates.Count(x => x.Vote) != 1)
             {
                 validVote = false;
@@ -77,7 +74,9 @@ namespace VoteCalc
             {
                 vote.Candidate = _voteViewModel.Candidates.SingleOrDefault(x => x.Vote);
             }
-            
+            vote.ValidVote = validVote;
+            vote.Voters = _voter;
+
             var votersRepository = new VotersRepository();
             if (votersRepository.IsExist(_voter))
             {
@@ -94,6 +93,9 @@ namespace VoteCalc
 
             var voteRepository = new VoteRepository();
             voteRepository.Save(vote);
+            StatisticWindow statisticWindow = new StatisticWindow();
+            statisticWindow.Show();
+            this.Close();
 
         }
 

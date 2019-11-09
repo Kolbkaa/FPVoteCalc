@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Model\Candidate.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\StatisticViewModel.cs" />
     <Compile Include="Model\Vote.cs" />
     <Compile Include="Model\Voter.cs" />
