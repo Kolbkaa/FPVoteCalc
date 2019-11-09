@@ -20,9 +20,11 @@ namespace VoteCalc
     /// </summary>
     public partial class StatisticWindow : Window
     {
+        private StatisticViewModel statisticModel;
         public StatisticWindow()
         {
-            var statisticModel = new StatisticViewModel();
+            statisticModel = new StatisticViewModel();
+            this.DataContext = statisticModel;
             InitializeComponent();
         }
     }

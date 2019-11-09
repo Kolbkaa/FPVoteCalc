@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:VoteCalc"
         mc:Ignorable="d"
         Title="StatisticWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
+        <WrapPanel Margin="10">
+            <Label></Label>
+            <Label></Label>
+            <Label></Label>
+        </WrapPanel>
+    </StackPanel>
 </Window>

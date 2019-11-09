@@ -46,17 +46,17 @@ namespace VoteCalc.Database.Repository
         public Dictionary<string, int> PartyStatistic()
         {
             var dictionary = new Dictionary<string, int>();
-            var candidateRepository = new CandidateRepository();
-            var candidateList = candidateRepository.GetAll();
+            var candidates = new CandidateRepository().GetAll();
+
             using (var dbContext = new AppDbContext())
             {
-                foreach (var candidate in candidateList)
+                foreach (var candidate in candidates)
                 {
                     if (dictionary.ContainsKey(candidate.Party)) continue;
-                    var count = dbContext.Vote.Count(x => x.CandidateEntity.Party == candidate.Party);
+
+                    var count = dbContext.Vote.Where(x => x.CandidateEntity != null).Count(x => x.CandidateEntity.GetDecryptCandidate().Party == candidate.Party);
                     dictionary.Add(candidate.Party, count);
                 }
-
                 return dictionary;
             }
 
