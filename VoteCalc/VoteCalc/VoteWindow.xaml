@@ -16,7 +16,7 @@
                     <WrapPanel >
                         <Label Width="200" Content="{Binding Path=Name}"></Label>
                         <Label Width="200" Content="{Binding Path=Party}"></Label>
-                        <CheckBox VerticalAlignment="Center" Width="50"></CheckBox>
+                        <CheckBox IsChecked="{Binding Path=Vote}" VerticalAlignment="Center" Width="50"></CheckBox>
                     </WrapPanel>
                     </Border>
                 </DataTemplate>

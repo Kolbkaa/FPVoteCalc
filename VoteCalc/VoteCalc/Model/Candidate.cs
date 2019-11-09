@@ -14,6 +14,7 @@ namespace VoteCalc.Model
 
         public string Name { get; set; }
         public string Party { get; set; }
+        public bool Vote { get; set; }
     }
 
 

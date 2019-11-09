@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VoteCalc.Logic;
 using VoteCalc.Model;
 
 namespace VoteCalc.Database.Entity
 {
-    class CandidateEntity: Candidate
+    class CandidateEntity:CryptData
     {
-
+        public int Id { get; set; }
         private string _name;
-        public new string Name
+        public string Name
         {
             get =>_name;
             set => _name = Encrypt(value);
         }
         private string _party;
-        public new string Party
+        public  string Party
         {
             get => _party;
             set => _party = Encrypt(value);
@@ -27,7 +28,7 @@ namespace VoteCalc.Database.Entity
         {
             var candidate = new Candidate()
             {
-                Id = base.Id,Name = Decrypt(this.Name), Party = Decrypt(this.Party)
+                Id = this.Id,Name = Decrypt(this.Name), Party = Decrypt(this.Party)
             };
             return candidate;
         }

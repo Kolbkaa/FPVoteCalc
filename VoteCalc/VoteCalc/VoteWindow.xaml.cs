@@ -48,11 +48,24 @@ namespace VoteCalc
 
         private void Vote_OnClick(object sender, RoutedEventArgs e)
         {
+            var validVote = true;
+
             var confirmVote = MessageBox.Show("Please confirm your vote.", "VOTE", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(confirmVote == MessageBoxResult.No) return;
 
             var block = new BlockedJsonData();
-            block.GetAll();
+            if (block.GetAll().Contains(_voter.Pesel))
+            {
+                validVote = false;
+                MessageBox.Show("You do not have the right to vote. Your vote will not be valid.", "Warning",
+                    MessageBoxButton.OK);
+  
+            }
+
+            if (_voteViewModel.Candidates.Count(x => x.Vote) != 1)
+            {
+                validVote = false;
+            }
         }
     }
 

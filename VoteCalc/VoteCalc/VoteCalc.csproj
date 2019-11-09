@@ -144,6 +144,8 @@
     <Compile Include="Database\AppDbContext.cs" />
     <Compile Include="Database\Entity\CandidateEntity.cs" />
     <Compile Include="Database\Entity\IEntity.cs" />
+    <Compile Include="Database\Entity\VoteEntity.cs" />
+    <Compile Include="Database\Entity\VotersEntity.cs" />
     <Compile Include="Database\Repository\CandidateRepository.cs" />
     <Compile Include="Database\Repository\Repository.cs" />
     <Compile Include="Logic\BlockedJsonData.cs" />

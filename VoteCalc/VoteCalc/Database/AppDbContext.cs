@@ -13,6 +13,8 @@ namespace VoteCalc.Database
     {
         private const string _connectionString = @"Server=.\SQLEXPRESS;Database=FPVoteCalc;Trusted_Connection=True;";
         public DbSet<CandidateEntity> Candidates { get; set; }
+        public DbSet<VotersEntity> Voters { get; set; }
+        public DbSet<VoteEntity> Vote { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
