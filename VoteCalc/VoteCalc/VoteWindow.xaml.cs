@@ -96,6 +96,12 @@ namespace VoteCalc
             voteRepository.Save(vote);
 
         }
+
+        private void Statistic_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticWindow statisticWindow = new StatisticWindow();
+            statisticWindow.ShowDialog();
+        }
     }
 
 }

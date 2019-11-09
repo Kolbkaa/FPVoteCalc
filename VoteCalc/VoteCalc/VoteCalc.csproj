@@ -148,6 +148,7 @@
     <Compile Include="Database\Entity\VotersEntity.cs" />
     <Compile Include="Database\Repository\CandidateRepository.cs" />
     <Compile Include="Database\Repository\Repository.cs" />
+    <Compile Include="Database\Repository\StatisticRepository.cs" />
     <Compile Include="Database\Repository\VoteRepository.cs" />
     <Compile Include="Database\Repository\VotersRepository.cs" />
     <Compile Include="Logic\BlockedJsonData.cs" />
@@ -168,8 +169,12 @@
     </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Model\Candidate.cs" />
+    <Compile Include="ViewModel\StatisticViewModel.cs" />
     <Compile Include="Model\Vote.cs" />
     <Compile Include="Model\Voter.cs" />
+    <Compile Include="StatisticWindow.xaml.cs">
+      <DependentUpon>StatisticWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Pesel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\VoteViewModel.cs" />
@@ -188,6 +193,10 @@
       <DependentUpon>LoginWindows.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StatisticWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
