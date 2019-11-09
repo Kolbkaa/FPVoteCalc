@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Design;
 using VoteCalc.Logic;
 
 namespace VoteCalc.Model
@@ -10,17 +11,11 @@ namespace VoteCalc.Model
     public class Candidate : CryptData
     {
         public int Id { get; set; }
-        private string _name;
-        public string Name
-        {
-            get => Decrypt(_name);
-            set => _name = Encrypt(value);
-        }
-        private string _party;
-        public string Party
-        {
-            get => Decrypt(_party);
-            set => _party = Encrypt(value);
-        }
+
+        public string Name { get; set; }
+        public string Party { get; set; }
     }
+
+
 }
+

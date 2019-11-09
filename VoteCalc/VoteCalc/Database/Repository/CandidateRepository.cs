@@ -11,7 +11,7 @@ namespace VoteCalc.Database.Repository
 {
     public sealed class CandidateRepository : Repository<Candidate>
     {
-        public override IEnumerable<Candidate> GetAll()
+        public override List<Candidate> GetAll()
         {
             List<Candidate> list = new List<Candidate>();
             using (var dbContext = new AppDbContext())
@@ -20,12 +20,7 @@ namespace VoteCalc.Database.Repository
 
                 foreach (var candidate in candidates)
                 {
-                    list.Add(new Candidate()
-                    {
-                        Id = candidate.Id,
-                        Name = candidate.Name,
-                        Party = candidate.Party
-                    });
+                    list.Add(candidate.GetDecryptCandidate());
                 }
             }
 
@@ -38,6 +33,7 @@ namespace VoteCalc.Database.Repository
             {
                 foreach (var candidate in list)
                 {
+                    //dbContext.Candidates.Add(new CandidateEntity(candidate.Name,candidate.Party));
                     dbContext.Candidates.Add(new CandidateEntity()
                     {
                         Name = candidate.Name,

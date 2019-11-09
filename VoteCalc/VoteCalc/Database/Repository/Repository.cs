@@ -9,7 +9,7 @@ namespace VoteCalc.Database.Repository
 {
     public abstract class Repository<T>
     {
-        public abstract IEnumerable<T> GetAll();
+        public abstract List<T> GetAll();
 
         public abstract void AddAll(IList<T> list);
     }

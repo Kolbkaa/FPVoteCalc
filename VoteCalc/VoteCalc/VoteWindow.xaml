@@ -4,9 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoteCalc"
+        xmlns:vm="clr-namespace:VoteCalc.ViewModel"
         mc:Ignorable="d"
-        Title="VoteWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="VoteWindow" Width="500" ResizeMode="CanMinimize">
+    <StackPanel>
+        <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
+        <ItemsControl Name="Candidate">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
+                    <WrapPanel >
+                        <Label Width="200" Content="{Binding Path=Name}"></Label>
+                        <Label Width="200" Content="{Binding Path=Party}"></Label>
+                        <CheckBox VerticalAlignment="Center" Width="50"></CheckBox>
+                    </WrapPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick"></Button>
+
+    </StackPanel>
 </Window>

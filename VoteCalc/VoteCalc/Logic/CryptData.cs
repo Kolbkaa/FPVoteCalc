@@ -10,16 +10,16 @@ namespace VoteCalc.Logic
 {
     public abstract class CryptData
     {
-        private static readonly string _passwordHash = "Tr0dn3_H@sl0";
-        private static readonly string _saltKey = "YEKgnortS";
-        private static readonly string _VIKey = "@1B21334e5a6gbHa";
+        static readonly string _passwordHash = "P@@Sw0rd";
+        static readonly string _saltKey = "S@LT&KEY";
+        static readonly string _VIKey = "@1B2c3D4e5F6g7H8";
         protected static string Encrypt(string plainText)
         {
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
-            byte[] keyBytes = new Rfc2898DeriveBytes(_passwordHash, Encoding.ASCII.GetBytes(_saltKey)).GetBytes(256 / 8);
+            byte[] keyBytes = new Rfc2898DeriveBytes(_passwordHash, Encoding.UTF8.GetBytes(_saltKey)).GetBytes(256 / 8);
             var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.Zeros };
-            var encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(_VIKey));
+            var encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.UTF8.GetBytes(_VIKey));
 
             byte[] cipherTextBytes;
 
@@ -39,10 +39,10 @@ namespace VoteCalc.Logic
         protected static string Decrypt(string encryptedText)
         {
             byte[] cipherTextBytes = Convert.FromBase64String(encryptedText);
-            byte[] keyBytes = new Rfc2898DeriveBytes(_passwordHash, Encoding.ASCII.GetBytes(_saltKey)).GetBytes(256 / 8);
+            byte[] keyBytes = new Rfc2898DeriveBytes(_passwordHash, Encoding.UTF8.GetBytes(_saltKey)).GetBytes(256 / 8);
             var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.None };
 
-            var decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.ASCII.GetBytes(_VIKey));
+            var decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.UTF8.GetBytes(_VIKey));
             var memoryStream = new MemoryStream(cipherTextBytes);
             var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
             byte[] plainTextBytes = new byte[cipherTextBytes.Length];

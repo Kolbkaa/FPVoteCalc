@@ -16,6 +16,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VoteCalc.Model;
+using VoteCalc.ViewModel;
 
 namespace VoteCalc
 {
@@ -25,31 +26,32 @@ namespace VoteCalc
     public partial class VoteWindow : Window
     {
         private Voter _voter;
+        private VoteViewModel _voteViewModel;
         public VoteWindow(Voter voter)
         {
-          XmlDocument xmlDocument = new XmlDocument();
-            using (var webClient = new WebClient())
-            {
-                webClient.Headers.Add(HttpRequestHeader.Accept, "application/xml");
-                var xmlString = webClient.DownloadString("http://webtask.future-processing.com:8069/candidates");
-                xmlDocument.LoadXml(xmlString);
-            }
+            _voteViewModel = new VoteViewModel();
 
-            var candidate = xmlDocument.DocumentElement.SelectNodes("candidate");
-            foreach (XmlNode xmlNode in candidate)
-            {
-                var ineText = xmlNode.InnerText;
-            }
-             
-            //var json2 = JsonConvert.DeserializeObject((json as Array)[1]);
-            _voter = voter;
+            this.DataContext = _voteViewModel;
             InitializeComponent();
+            Candidate.ItemsSource = _voteViewModel.Candidates;
+            _voter = voter;
+
+        }
+
+        private void LogOff_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginWindows = new MainWindow();
+            loginWindows.Show();
+            this.Close();
+        }
+
+        private void Vote_OnClick(object sender, RoutedEventArgs e)
+        {
+            var confirmVote = MessageBox.Show("Please confirm your vote.", "VOTE", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(confirmVote == MessageBoxResult.No) return;
+            
+
         }
     }
 
-     class Temp
-    {
-        public string PublicationDate { get; set; }
-        public string Candidate { get; set; }
-    }
 }

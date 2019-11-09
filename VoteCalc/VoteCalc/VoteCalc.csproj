@@ -146,6 +146,7 @@
     <Compile Include="Database\Entity\IEntity.cs" />
     <Compile Include="Database\Repository\CandidateRepository.cs" />
     <Compile Include="Database\Repository\Repository.cs" />
+    <Compile Include="Logic\BlockedJsonData.cs" />
     <Compile Include="Logic\CandidateJsonData.cs" />
     <Compile Include="Logic\CryptData.cs" />
     <Compile Include="Logic\JsonDownload.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Model\Voter.cs" />
     <Compile Include="Tools\Pesel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\VoteViewModel.cs" />
     <Compile Include="VoteWindow.xaml.cs">
       <DependentUpon>VoteWindow.xaml</DependentUpon>
     </Compile>
