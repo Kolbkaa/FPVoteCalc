@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace VoteCalc.Logic
 {
-    public class JsonDownload<T>
+    public abstract class JsonDownload<T>
     {
         private readonly string _url;
         protected JsonDownload(string url)

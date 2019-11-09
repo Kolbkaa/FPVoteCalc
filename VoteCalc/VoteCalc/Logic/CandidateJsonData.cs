@@ -8,7 +8,7 @@ using VoteCalc.Model;
 
 namespace VoteCalc.Logic
 {
-    class CandidateJsonData:JsonDownload<RootObject>
+    class CandidateJsonData:JsonDownload<CandidateJsonData.RootObject>
     {
         protected internal CandidateJsonData() : base(@"http://webtask.future-processing.com:8069/candidates")
         {
@@ -18,16 +18,18 @@ namespace VoteCalc.Logic
             var jsonData = DownloadJson() as RootObject;
             return jsonData?.candidates.candidate;
         }
+
+        internal class Candidates
+        {
+            public string publicationDate { get; set; }
+            public List<Candidate> candidate { get; set; }
+        }
+
+        internal class RootObject
+        {
+            public Candidates candidates { get; set; }
+        }
     }
     
-    internal class Candidates
-    {
-        public string publicationDate { get; set; }
-        public List<Candidate> candidate { get; set; }
-    }
-
-    internal class RootObject
-    {
-        public Candidates candidates { get; set; }
-    }
+    
 }

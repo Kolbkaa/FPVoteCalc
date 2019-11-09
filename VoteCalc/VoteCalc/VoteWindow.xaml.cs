@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VoteCalc.Logic;
 using VoteCalc.Model;
 using VoteCalc.ViewModel;
 
@@ -49,8 +50,9 @@ namespace VoteCalc
         {
             var confirmVote = MessageBox.Show("Please confirm your vote.", "VOTE", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(confirmVote == MessageBoxResult.No) return;
-            
 
+            var block = new BlockedJsonData();
+            block.GetAll();
         }
     }
 
