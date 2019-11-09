@@ -15,16 +15,17 @@ namespace VoteCalc.Database.Entity
         private string _lastName;
         public string LastName { get => _lastName; set => _lastName = Encrypt(value); }
         private string _pesel;
-        public string Pesel { get=> _pesel; set => _pesel = Encrypt(value); }
+        public string Pesel { get => _pesel; set => _pesel = Encrypt(value); }
 
 
         public Voter GetDecryptVoter()
         {
             var voter = new Voter()
             {
-               FirstName = FirstName,
-               LastName = Decrypt(_lastName),
-               Pesel = Decrypt(_pesel)
+                Id = Id,
+                FirstName = FirstName,
+                LastName = Decrypt(_lastName),
+                Pesel = Decrypt(_pesel)
             };
             return voter;
         }

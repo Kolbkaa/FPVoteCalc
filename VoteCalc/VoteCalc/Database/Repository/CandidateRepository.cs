@@ -45,6 +45,11 @@ namespace VoteCalc.Database.Repository
             }
         }
 
+        public override void Save(Candidate model)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsAnyCandidate()
         {
             using (var dbContext = new AppDbContext())

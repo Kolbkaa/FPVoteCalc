@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VoteCalc.Database.Entity
+namespace VoteCalc.Model
 {
-    class VoteEntity
+    class Vote
     {
         public int Id { get; set; }
-        public VotersEntity VotersEntity { get; set; }
-        public CandidateEntity CandidateEntity { get; set; }
+        public Voter Voters{ get; set; }
+        public Candidate Candidate { get; set; }
         public bool ValidVote { get; set; }
     }
 }

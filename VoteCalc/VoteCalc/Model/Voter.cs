@@ -9,6 +9,7 @@ namespace VoteCalc.Model
 {
     public class Voter:CryptData
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         private string _lastName;
         private string _pesel;

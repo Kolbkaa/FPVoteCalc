@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VoteCalc.Database.Repository;
 using VoteCalc.Logic;
 using VoteCalc.Model;
 using VoteCalc.ViewModel;
@@ -62,10 +63,38 @@ namespace VoteCalc
   
             }
 
+
+
+            
+            var vote = new Vote();
+            vote.ValidVote = validVote;
+            vote.Voters = _voter;
             if (_voteViewModel.Candidates.Count(x => x.Vote) != 1)
             {
                 validVote = false;
             }
+            else
+            {
+                vote.Candidate = _voteViewModel.Candidates.SingleOrDefault(x => x.Vote);
+            }
+            
+            var votersRepository = new VotersRepository();
+            if (votersRepository.IsExist(_voter))
+            {
+                
+                    MessageBox.Show("You can't vote. You have already cast your vote.", "Warning",
+                        MessageBoxButton.OK);
+                    this.Close();
+                    return;
+                    
+
+            }
+
+            votersRepository.Save(_voter);
+
+            var voteRepository = new VoteRepository();
+            voteRepository.Save(vote);
+
         }
     }
 
