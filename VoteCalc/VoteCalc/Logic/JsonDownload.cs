@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -15,12 +16,13 @@ namespace VoteCalc.Logic
         {
             _url = url;
         }
-        public object DownloadJson()
+        protected object DownloadJson()
         {
             using (var webClient = new WebClient())
             {
+                webClient.Encoding= Encoding.UTF8;
                 var json = webClient.DownloadString(_url);
-
+             
                 return (T)JsonConvert.DeserializeObject<T>(json);
             }
 

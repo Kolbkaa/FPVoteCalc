@@ -10,7 +10,7 @@ namespace VoteCalc.Logic
 {
     class CandidateJsonData:JsonDownload<RootObject>
     {
-        protected internal CandidateJsonData(string url) : base(url)
+        protected internal CandidateJsonData() : base(@"http://webtask.future-processing.com:8069/candidates")
         {
         }
         public List<Candidate> GetAll()
