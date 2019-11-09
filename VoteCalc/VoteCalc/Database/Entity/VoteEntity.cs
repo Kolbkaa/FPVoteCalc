@@ -8,6 +8,7 @@ namespace VoteCalc.Database.Entity
 {
     class VoteEntity
     {
+        public int Id { get; set; }
         public VotersEntity VotersEntity { get; set; }
         public CandidateEntity CandidateEntity { get; set; }
     }
