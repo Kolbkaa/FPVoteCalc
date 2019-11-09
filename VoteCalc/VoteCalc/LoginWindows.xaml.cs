@@ -57,13 +57,15 @@ namespace VoteCalc
                 return;
             }
 
-            var voter = new Voters
+            var voter = new Voter
             {
                 FirstName = _loginViewModel.FirstName,
                 LastName = _loginViewModel.LastName,
                 Pesel = _loginViewModel.Pesel
             };
-
+            var voteWindow = new VoteWindow(voter);
+            voteWindow.Show();
+            this.Close();
         }
     }
 }
