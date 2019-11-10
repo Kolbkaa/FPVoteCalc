@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ChartWindow" Height="auto" Width="auto">
 
-    <ScrollViewer>
+    <ScrollViewer Margin="10">
         <StackPanel HorizontalAlignment="Center">
             <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
             <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
@@ -16,6 +16,7 @@
 
                 <WrapPanel Margin="5">
                     <Label Width="100" Content="Valid vote"></Label>
+                    <Label Width="50" Content="{Binding Path=AllValidVote}"></Label>
                     <Grid Width="{Binding Path=ChartWidth}" Background="SlateGray">
                         <Rectangle Fill="CadetBlue" Width="{Binding Path=AllValidVote}" HorizontalAlignment="Left"></Rectangle>
                     </Grid>
@@ -23,6 +24,7 @@
 
                 <WrapPanel Margin="5">
                     <Label Width="100"  Content="Invalid Vote"></Label>
+                    <Label Width="50" Content="{Binding Path=AllInvalidVote}"></Label>
                     <Grid Width="{ Binding Path=ChartWidth}" Background="SlateGray">
                         <Rectangle Fill="CadetBlue" Width="{Binding Path=AllInvalidVote}" HorizontalAlignment="Left"></Rectangle>
                     </Grid>
@@ -37,6 +39,7 @@
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
                                 <WrapPanel HorizontalAlignment="Center">
                                     <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Label Width="50" Content="{Binding Path=Value}"></Label>
                                     <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ChartWidth}" Background="SlateGray">
                                         <Rectangle HorizontalAlignment="Left" Width="{Binding Path=Value}" Fill="CadetBlue"></Rectangle>
                                     </Grid>
@@ -52,6 +55,7 @@
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
                                 <WrapPanel >
                                     <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Label Width="50" Content="{Binding Path=Value}"></Label>
                                     <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ChartWidth}" Background="SlateGray">
                                         <Rectangle HorizontalAlignment="Left" Width="{Binding Path=Value}" Fill="CadetBlue"></Rectangle>
                                     </Grid>

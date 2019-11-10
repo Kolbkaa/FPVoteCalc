@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using VoteCalc.Annotations;
 using VoteCalc.Database.Repository;
+using VoteCalc.Logic;
 
 namespace VoteCalc.Model
 {
@@ -29,9 +30,9 @@ namespace VoteCalc.Model
             get
             {
                 var candidate = new ObservableCollection<KeyValuePair<string, string>>();
-                foreach (var keyValuePair in _candidateStatistic.OrderByDescending(x=>x.Value))
+                foreach (var keyValuePair in _candidateStatistic.OrderByDescending(x => x.Value))
                 {
-                    candidate.Add(new KeyValuePair<string, string>(keyValuePair.Key,$"{Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)}%"));
+                    candidate.Add(new KeyValuePair<string, string>(keyValuePair.Key, $"{Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)}%"));
                 }
 
                 return candidate;
@@ -64,7 +65,76 @@ namespace VoteCalc.Model
             _allInvalidVote = statisticRepository.CountAllInvalidVote();
             _candidateStatistic = new ObservableCollection<KeyValuePair<string, int>>(statisticRepository.CandidateStatistic());
             _partyStatistic = new ObservableCollection<KeyValuePair<string, int>>(statisticRepository.PartyStatistic());
-            
+
+        }
+        
+        public void ExportDataToCsv()
+        {
+            var exportCsv = new ExportDataToCsv();
+            exportCsv.AddDataToFile("All invalid vote", _allInvalidVote.ToString());
+            exportCsv.AddDataToFile("All valid vote", _allValidVote.ToString());
+            exportCsv.AddDataToFile("All vote", (_allInvalidVote + _allValidVote).ToString());
+
+            exportCsv.AddDataToFile(_candidateStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+
+            exportCsv.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+
+            exportCsv.Export();
+
+
+        }
+
+        public void ExportDataToPdf()
+        {
+            var exportPdf = new ExportDataToPdf();
+            exportPdf.AddTextToFile("Statistic:");
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddDataToFile("All invalid vote", _allInvalidVote.ToString());
+            exportPdf.AddDataToFile("All valid vote", _allValidVote.ToString());
+            exportPdf.AddDataToFile("All vote", (_allInvalidVote + _allValidVote).ToString());
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Candidate statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_candidateStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Party statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString())); exportPdf.AddTextToFile("Statistic:");
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddDataToFile("All invalid vote", _allInvalidVote.ToString());
+            exportPdf.AddDataToFile("All valid vote", _allValidVote.ToString());
+            exportPdf.AddDataToFile("All vote", (_allInvalidVote + _allValidVote).ToString());
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Candidate statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_candidateStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Party statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString())); exportPdf.AddTextToFile("Statistic:");
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddDataToFile("All invalid vote", _allInvalidVote.ToString());
+            exportPdf.AddDataToFile("All valid vote", _allValidVote.ToString());
+            exportPdf.AddDataToFile("All vote", (_allInvalidVote + _allValidVote).ToString());
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Candidate statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_candidateStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+            exportPdf.AddTextToFile("");
+
+            exportPdf.AddTextToFile("Party statistic:");
+            exportPdf.AddTextToFile("");
+            exportPdf.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
+
+            exportPdf.Export();
         }
     }
 }

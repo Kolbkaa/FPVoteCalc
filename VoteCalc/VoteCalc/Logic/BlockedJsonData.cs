@@ -17,7 +17,7 @@ namespace VoteCalc.Logic
             var jsonData = DownloadJson() as RootObject;
             var blockedPesel = jsonData?.disallowed.person;
 
-            return blockedPesel.Select(person => person.pesel).ToList();
+            return blockedPesel?.Select(person => person.pesel)?.ToList();
         }
 
         internal class Person

@@ -18,6 +18,7 @@ using Newtonsoft.Json.Linq;
 using VoteCalc.Database.Repository;
 using VoteCalc.Logic;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 using VoteCalc.ViewModel;
 
 namespace VoteCalc
@@ -44,37 +45,35 @@ namespace VoteCalc
         {
             MainWindow loginWindows = new MainWindow();
             loginWindows.Show();
-            this.Close();
+            Logoff.LogoffToLogin();
         }
 
         private void Vote_OnClick(object sender, RoutedEventArgs e)
         {
-            var validVote = true;
-
+            
+            var vote = new Vote();
             var confirmVote = MessageBox.Show("Please confirm your vote.", "VOTE", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(confirmVote == MessageBoxResult.No) return;
 
-            var block = new BlockedJsonData();
-            if (block.GetAll().Contains(_voter.Pesel))
+            var block = new BlockedJsonData().GetAll();
+            if(block == null) return;
+            if (block.Contains(_voter.Pesel))
             {
-                validVote = false;
+                vote.ValidVote = false;
+                vote.WithoutRight = true;
                 MessageBox.Show("You do not have the right to vote. Your vote will not be valid.", "Warning",
                     MessageBoxButton.OK);
   
             }
 
-            
-            var vote = new Vote();
-            
             if (_voteViewModel.Candidates.Count(x => x.Vote) != 1)
             {
-                validVote = false;
+                vote.ValidVote = false;
             }
             else
             {
                 vote.Candidate = _voteViewModel.Candidates.SingleOrDefault(x => x.Vote);
             }
-            vote.ValidVote = validVote;
             vote.Voters = _voter;
 
             var votersRepository = new VotersRepository();
@@ -83,19 +82,18 @@ namespace VoteCalc
                 
                     MessageBox.Show("You can't vote. You have already cast your vote.", "Warning",
                         MessageBoxButton.OK);
-                    this.Close();
                     return;
-                    
-
             }
 
             votersRepository.Save(_voter);
 
             var voteRepository = new VoteRepository();
             voteRepository.Save(vote);
+
             StatisticWindow statisticWindow = new StatisticWindow();
             statisticWindow.Show();
-            this.Close();
+
+            Close();
 
         }
 

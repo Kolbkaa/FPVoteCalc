@@ -8,7 +8,7 @@ using VoteCalc.Model;
 
 namespace VoteCalc.Database.Repository
 {
-    class VoteRepository:Repository<Vote>
+    class VoteRepository : Repository<Vote>
     {
         public override List<Vote> GetAll()
         {
@@ -25,13 +25,14 @@ namespace VoteCalc.Database.Repository
             using (var dbContext = new AppDbContext())
             {
                 CandidateEntity candidate = null;
-                if(model.Candidate!=null)
-                 candidate = dbContext.Candidates?.SingleOrDefault(x => x.Id == model.Candidate.Id);
+                if (model.Candidate != null)
+                    candidate = dbContext.Candidates?.SingleOrDefault(x => x.Id == model.Candidate.Id);
                 var voters = dbContext.Voters.Single(x => x.Id == model.Voters.Id);
                 dbContext.Vote.Add(new VoteEntity()
                 {
                     CandidateEntity = candidate,
                     ValidVote = model.ValidVote,
+                    WithoutRight = model.WithoutRight,
                     VotersEntity = voters
                 });
                 dbContext.SaveChanges();

@@ -32,9 +32,16 @@ namespace VoteCalc
             var candidateRepository = new CandidateRepository();
             if (!candidateRepository.IsAnyCandidate())
             {
-                var candidateJsonData = new CandidateJsonData();
-                candidateRepository.AddAll(candidateJsonData.GetAll());
-
+                var candidateJsonData = new CandidateJsonData().GetAll();
+                if (candidateJsonData != null)
+                {
+                    candidateRepository.AddAll(candidateJsonData);
+                }
+                else
+                {
+                    App.Current.Shutdown();
+                }
+                
             }
 
         }

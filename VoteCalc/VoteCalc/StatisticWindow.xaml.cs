@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VoteCalc.Logic;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 
 namespace VoteCalc
 {
@@ -26,23 +28,32 @@ namespace VoteCalc
             _statisticModel = new StatisticViewModel();
             this.DataContext = _statisticModel;
             InitializeComponent();
-            //Candidate.ItemsSource = _statisticModel.CandidateStatistic;
-            //Party.ItemsSource = _statisticModel.PartyStatistic;
+
         }
 
-       
+
 
         private void LogOff_Click(object sender, RoutedEventArgs e)
         {
             MainWindow loginWindows = new MainWindow();
             loginWindows.Show();
-            this.Close();
-            App.Current.Windows[0].Close();
+            Logoff.LogoffToLogin();
+            
         }
         private void Chart_Click(object sender, RoutedEventArgs e)
         {
             ChartWindow chartWindow = new ChartWindow();
             chartWindow.ShowDialog();
+        }
+
+        private void ExportToCSV_Click(object sender, RoutedEventArgs e)
+        {
+            _statisticModel.ExportDataToCsv();
+        }
+
+        private void ExportToPDF_Click(object sender, RoutedEventArgs e)
+        {
+            _statisticModel.ExportDataToPdf();
         }
     }
 }

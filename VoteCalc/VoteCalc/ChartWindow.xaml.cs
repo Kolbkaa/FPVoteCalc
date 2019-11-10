@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 using VoteCalc.ViewModel;
 
 namespace VoteCalc
@@ -36,10 +37,7 @@ namespace VoteCalc
         {
             MainWindow loginWindows = new MainWindow();
             loginWindows.Show();
-            this.Close();
-            App.Current.Windows[1].Close();
-            App.Current.Windows[1].Close();
-            App.Current.Windows[0].Close();
+            Logoff.LogoffToLogin();
             
         }
 

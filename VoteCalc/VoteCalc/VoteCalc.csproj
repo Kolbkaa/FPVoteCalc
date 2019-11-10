@@ -89,6 +89,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -110,6 +116,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Interactive.Async, Version=3.2.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Interactive.Async.3.2.0\lib\net46\System.Interactive.Async.dll</HintPath>
     </Reference>
@@ -157,6 +164,9 @@
     <Compile Include="Logic\BlockedJsonData.cs" />
     <Compile Include="Logic\CandidateJsonData.cs" />
     <Compile Include="Logic\CryptData.cs" />
+    <Compile Include="Logic\ExportData.cs" />
+    <Compile Include="Logic\ExportDataToCSV.cs" />
+    <Compile Include="Logic\ExportDataToPdf.cs" />
     <Compile Include="Logic\JsonDownload.cs" />
     <Compile Include="Migrations\20191109102711_addCandidateTable.cs" />
     <Compile Include="Migrations\20191109102711_addCandidateTable.designer.cs">
@@ -170,9 +180,15 @@
     <Compile Include="Migrations\20191109141640_AddValidVoteToVoteEnity.designer.cs">
       <DependentUpon>20191109141640_AddValidVoteToVoteEnity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20191110155512_WithRightField.cs" />
+    <Compile Include="Migrations\20191110155512_WithRightField.designer.cs">
+      <DependentUpon>20191110155512_WithRightField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Model\Candidate.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Tools\ErrorMessage.cs" />
+    <Compile Include="Tools\Logoff.cs" />
     <Compile Include="ViewModel\ChartViewModel.cs" />
     <Compile Include="ViewModel\StatisticViewModel.cs" />
     <Compile Include="Model\Vote.cs" />

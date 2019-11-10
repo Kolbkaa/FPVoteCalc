@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:VoteCalc"
         mc:Ignorable="d"
         Title="StatisticWindow" Height="450" Width="800">
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Center">
+    <ScrollViewer Margin="10">
+        <StackPanel HorizontalAlignment="Center" >
             <WrapPanel HorizontalAlignment="Right">
+                <Button HorizontalAlignment="Right" Content="Export to PDF" Padding="10" Margin="10" Click="ExportToPDF_Click"></Button>
+                <Button HorizontalAlignment="Right" Content="Export to CSV" Padding="10" Margin="10" Click="ExportToCSV_Click"></Button>
                 <Button HorizontalAlignment="Right" Content="Charts" Padding="10" Margin="10" Click="Chart_Click"></Button>
                 <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
             </WrapPanel>

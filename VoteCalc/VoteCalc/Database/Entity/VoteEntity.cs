@@ -12,5 +12,6 @@ namespace VoteCalc.Database.Entity
         public VotersEntity VotersEntity { get; set; }
         public CandidateEntity CandidateEntity { get; set; }
         public bool ValidVote { get; set; }
+        public bool WithoutRight { get; set; }
     }
 }
