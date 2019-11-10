@@ -141,6 +141,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChartWindow.xaml.cs">
+      <DependentUpon>ChartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database\AppDbContext.cs" />
     <Compile Include="Database\Entity\CandidateEntity.cs" />
     <Compile Include="Database\Entity\IEntity.cs" />
@@ -170,6 +173,7 @@
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Model\Candidate.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModel\ChartViewModel.cs" />
     <Compile Include="ViewModel\StatisticViewModel.cs" />
     <Compile Include="Model\Vote.cs" />
     <Compile Include="Model\Voter.cs" />
@@ -182,6 +186,10 @@
     <Compile Include="VoteWindow.xaml.cs">
       <DependentUpon>VoteWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ChartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindows.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

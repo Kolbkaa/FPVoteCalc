@@ -27,7 +27,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick"></Button>
+        <Button Margin="10" Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick"></Button>
 
     </StackPanel>
 </Window>

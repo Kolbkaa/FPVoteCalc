@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="StatisticWindow" Height="450" Width="800">
     <ScrollViewer>
-        <StackPanel>
-            <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
+        <StackPanel HorizontalAlignment="Center">
+            <WrapPanel HorizontalAlignment="Right">
+                <Button HorizontalAlignment="Right" Content="Charts" Padding="10" Margin="10" Click="Chart_Click"></Button>
+                <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
+            </WrapPanel>
             <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
             <WrapPanel Margin="10" HorizontalAlignment="Stretch">
                 <Label Content="{Binding Path=AllValidVote}"></Label>
@@ -16,7 +19,7 @@
                 <Label Content="{Binding Path=AllVote}"></Label>
             </WrapPanel>
             <WrapPanel>
-                <ItemsControl Name="Candidate">
+                <ItemsControl Name="Candidate" ItemsSource="{Binding Path=CandidateStatistic}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
@@ -28,7 +31,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl Name="Party">
+                <ItemsControl Name="Party" ItemsSource="{Binding Path=PartyStatistic}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">

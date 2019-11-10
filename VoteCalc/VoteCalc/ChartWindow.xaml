@@ -1,0 +1,66 @@
+﻿<Window x:Class="VoteCalc.ChartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VoteCalc"
+        xmlns:su="clr-namespace:VoteCalc.ViewModel"
+        mc:Ignorable="d"
+        Title="ChartWindow" Height="auto" Width="auto">
+
+    <ScrollViewer>
+        <StackPanel HorizontalAlignment="Center">
+            <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
+            <Label HorizontalContentAlignment="Center" Content="Statistic" VerticalAlignment="Stretch" Margin="10" FontSize="15"></Label>
+            <StackPanel Margin="10" HorizontalAlignment="Left">
+
+                <WrapPanel Margin="5">
+                    <Label Width="100" Content="Valid vote"></Label>
+                    <Grid Width="{Binding Path=ChartWidth}" Background="SlateGray">
+                        <Rectangle Fill="CadetBlue" Width="{Binding Path=AllValidVote}" HorizontalAlignment="Left"></Rectangle>
+                    </Grid>
+                </WrapPanel>
+
+                <WrapPanel Margin="5">
+                    <Label Width="100"  Content="Invalid Vote"></Label>
+                    <Grid Width="{ Binding Path=ChartWidth}" Background="SlateGray">
+                        <Rectangle Fill="CadetBlue" Width="{Binding Path=AllInvalidVote}" HorizontalAlignment="Left"></Rectangle>
+                    </Grid>
+                </WrapPanel>
+
+            </StackPanel>
+
+            <WrapPanel HorizontalAlignment="Center">
+                <ItemsControl Name="Candidate" ItemsSource="{Binding CandidateStatistic}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ChartWidth}" Background="SlateGray">
+                                        <Rectangle HorizontalAlignment="Left" Width="{Binding Path=Value}" Fill="CadetBlue"></Rectangle>
+                                    </Grid>
+                                </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl Name="Party" ItemsSource="{Binding PartyStatistic}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
+                                <WrapPanel >
+                                    <Label Width="200" Content="{Binding Path=Key}"></Label>
+                                    <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ChartWidth}" Background="SlateGray">
+                                        <Rectangle HorizontalAlignment="Left" Width="{Binding Path=Value}" Fill="CadetBlue"></Rectangle>
+                                    </Grid>
+                                </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

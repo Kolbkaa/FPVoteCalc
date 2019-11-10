@@ -12,37 +12,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VoteCalc.Model;
+using VoteCalc.ViewModel;
 
 namespace VoteCalc
 {
     /// <summary>
-    /// Interaction logic for StatisticWindow.xaml
+    /// Interaction logic for ChartWindow.xaml
     /// </summary>
-    public partial class StatisticWindow : Window
+    public partial class ChartWindow : Window
     {
-        private StatisticViewModel _statisticModel;
-        public StatisticWindow()
-        {
-            _statisticModel = new StatisticViewModel();
-            this.DataContext = _statisticModel;
-            InitializeComponent();
-            //Candidate.ItemsSource = _statisticModel.CandidateStatistic;
-            //Party.ItemsSource = _statisticModel.PartyStatistic;
-        }
+  
+        public ChartViewModel ChartViewModel { get; }
 
-       
+        public ChartWindow()
+        {
+            ChartViewModel = new ChartViewModel();
+            this.DataContext = ChartViewModel;
+            InitializeComponent();
+            
+        }
 
         private void LogOff_Click(object sender, RoutedEventArgs e)
         {
             MainWindow loginWindows = new MainWindow();
             loginWindows.Show();
             this.Close();
+            App.Current.Windows[1].Close();
+            App.Current.Windows[1].Close();
             App.Current.Windows[0].Close();
+            
         }
-        private void Chart_Click(object sender, RoutedEventArgs e)
-        {
-            ChartWindow chartWindow = new ChartWindow();
-            chartWindow.ShowDialog();
-        }
+
+       
     }
 }
