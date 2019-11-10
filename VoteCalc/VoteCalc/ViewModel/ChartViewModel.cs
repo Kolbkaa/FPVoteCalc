@@ -14,32 +14,32 @@ namespace VoteCalc.ViewModel
     {
 
         public double ChartWidth { get; } = 200;
-        public new double AllValidVote => Math.Round(((double)_allValidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100) *(ChartWidth / 100);
-        public new double AllInvalidVote => Math.Round(((double)_allInvalidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100) * (ChartWidth / 100);
+        public new KeyValuePair<string,double> AllValidVote => new KeyValuePair<string, double>( $"{Math.Round(((double)_allValidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100) }%",Math.Round(((double)_allValidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100) *(ChartWidth / 100));
+        public new KeyValuePair<string, double> AllInvalidVote => new KeyValuePair<string, double>($"{Math.Round(((double)_allInvalidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100)}%", Math.Round(((double)_allInvalidVote / ((double)_allValidVote + (double)_allInvalidVote)) * 100) * (ChartWidth / 100));
 
         public new double AllVote => _allInvalidVote + _allValidVote;
-        public new ObservableCollection<KeyValuePair<string, double>> CandidateStatistic
+        public new ObservableCollection<KeyValuePair<string, KeyValuePair<string, double>>> CandidateStatistic
         {
             get
             {
-                var candidate = new ObservableCollection<KeyValuePair<string, double>>();
+                var candidate = new ObservableCollection<KeyValuePair<string, KeyValuePair<string, double>>>();
                 foreach (var keyValuePair in _candidateStatistic.OrderByDescending(x => x.Value))
                 {
-                    candidate.Add(new KeyValuePair<string, double>(keyValuePair.Key, (Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)) * (ChartWidth / 100)));
+                    candidate.Add(new KeyValuePair<string, KeyValuePair<string, double>>(keyValuePair.Key, new KeyValuePair<string, double>($"{(Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100))}%", (Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)) * (ChartWidth / 100))));
                 }
 
                 return candidate;
             }
         }
 
-        public new ObservableCollection<KeyValuePair<string, double>> PartyStatistic
+        public new ObservableCollection<KeyValuePair<string, KeyValuePair<string, double>>> PartyStatistic
         {
             get
             {
-                var party = new ObservableCollection<KeyValuePair<string, double>>();
+                var party = new ObservableCollection<KeyValuePair<string, KeyValuePair<string, double>>>();
                 foreach (var keyValuePair in _partyStatistic.OrderByDescending(x => x.Value))
                 {
-                    party.Add(new KeyValuePair<string, double>(keyValuePair.Key, (Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)) * (ChartWidth / 100)));
+                    party.Add(new KeyValuePair<string, KeyValuePair<string, double>>(keyValuePair.Key, new KeyValuePair<string, double>($"{(Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100))}%", (Math.Round(((double)keyValuePair.Value / ((double)_allValidVote)) * 100)) * (ChartWidth / 100))));
                 }
 
                 return party;
