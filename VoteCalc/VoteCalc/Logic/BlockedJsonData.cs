@@ -12,25 +12,25 @@ namespace VoteCalc.Logic
         public List<string> GetAll()
         {
             var jsonData = DownloadJson() as RootObject;
-            var blockedPesel = jsonData?.Disallowed.Person;
+            var blockedPesel = jsonData?.disallowed.person;
 
-            return blockedPesel?.Select(person => person.Pesel)?.ToList();
+            return blockedPesel?.Select(person => person.pesel)?.ToList();
         }
 
         internal class Person
         {
-            public string Pesel { get; set; }
+            public string pesel { get; set; }
         }
 
         internal class Disallowed
         {
-            public string PublicationDate { get; set; }
-            public List<Person> Person { get; set; }
+            public string publicationDate { get; set; }
+            public List<Person> person { get; set; }
         }
 
         internal class RootObject
         {
-            public Disallowed Disallowed { get; set; }
+            public Disallowed disallowed { get; set; }
         }
     }
 }

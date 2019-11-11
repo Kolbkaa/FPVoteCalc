@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoteCalc"
-        xmlns:su="clr-namespace:VoteCalc.ViewModel"
         mc:Ignorable="d"
-        Title="ChartWindow" Height="auto" Width="auto">
+        Title="VoteCalc - Chart" Height="auto" Width="400" MinWidth="400">
 
     <ScrollViewer Margin="10">
         <StackPanel HorizontalAlignment="Center">
@@ -33,7 +32,7 @@
             </StackPanel>
 
             <WrapPanel HorizontalAlignment="Center">
-                <ItemsControl Name="Candidate" ItemsSource="{Binding CandidateStatistic}">
+                <ItemsControl Name="Candidate" ItemsSource="{Binding CandidateStatistic}" Margin="5">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
@@ -49,7 +48,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl Name="Party" ItemsSource="{Binding PartyStatistic}">
+                <ItemsControl Name="Party" ItemsSource="{Binding PartyStatistic}" Margin="5">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">

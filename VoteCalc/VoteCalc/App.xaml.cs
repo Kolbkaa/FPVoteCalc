@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
 using VoteCalc.Database;
-using VoteCalc.Database.Entity;
 using VoteCalc.Database.Repository;
 using VoteCalc.Logic;
 
@@ -20,7 +11,6 @@ namespace VoteCalc
     /// </summary>
     public partial class App : Application
     {
-        private const string CandidateUrl = "http://webtask.future-processing.com:8069/candidates";
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -30,18 +20,16 @@ namespace VoteCalc
             }
 
             var candidateRepository = new CandidateRepository();
-            if (!candidateRepository.IsAnyCandidate())
+            if (candidateRepository.IsAnyCandidate()) return;
+
+            var candidateJsonData = new CandidateJsonData().GetAll();
+            if (candidateJsonData != null)
             {
-                var candidateJsonData = new CandidateJsonData().GetAll();
-                if (candidateJsonData != null)
-                {
-                    candidateRepository.AddAll(candidateJsonData);
-                }
-                else
-                {
-                    App.Current.Shutdown();
-                }
-                
+                candidateRepository.AddAll(candidateJsonData);
+            }
+            else
+            {
+                Current.Shutdown();
             }
 
         }

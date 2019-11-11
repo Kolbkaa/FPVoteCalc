@@ -28,6 +28,14 @@ namespace VoteCalc.Database.Repository
             }
         }
 
+        public bool IsAnyVote()
+        {
+            using (var dbContext = new AppDbContext())
+            {
+                return dbContext.Vote.Any();
+            }
+        }
+
         public Dictionary<string, int> CandidateStatistic()
         {
             var dictionary = new Dictionary<string, int>();

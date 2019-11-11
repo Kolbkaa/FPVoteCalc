@@ -6,7 +6,7 @@ using VoteCalc.Model;
 
 namespace VoteCalc.Database.Repository
 {
-    public sealed class CandidateRepository : Repository<Candidate>
+    internal sealed class CandidateRepository : Repository<Candidate>
     {
         public override List<Candidate> GetAll()
         {

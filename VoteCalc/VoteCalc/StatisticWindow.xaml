@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoteCalc"
         mc:Ignorable="d"
-        Title="StatisticWindow" Height="450" Width="800">
+        Title="VoteCalc - Statistic" Height="auto" Width="400" MinWidth="400">
     <ScrollViewer Margin="10">
         <StackPanel HorizontalAlignment="Center" >
             <WrapPanel HorizontalAlignment="Right">
@@ -21,7 +21,7 @@
                 <Label Content="{Binding Path=AllVote}"></Label>
             </WrapPanel>
             <WrapPanel>
-                <ItemsControl Name="Candidate" ItemsSource="{Binding Path=CandidateStatistic}">
+                <ItemsControl Name="Candidate" ItemsSource="{Binding Path=CandidateStatistic}" Margin="5">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
@@ -33,7 +33,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl Name="Party" ItemsSource="{Binding Path=PartyStatistic}">
+                <ItemsControl Name="Party" ItemsSource="{Binding Path=PartyStatistic}" Margin="5">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VoteCalc.Model
+﻿namespace VoteCalc.Model
 {
-    class Vote
+    internal class Vote
     {
         public int Id { get; set; }
         public Voter Voters { get; set; }

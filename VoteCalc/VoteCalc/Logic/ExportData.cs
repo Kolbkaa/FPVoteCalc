@@ -14,7 +14,7 @@ namespace VoteCalc.Logic
         protected ExportData(string extension)
         {
             FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                $"export.{extension}");
+                $"exportVoteData.{extension}");
             StringBuilder = new StringBuilder();
 
         }

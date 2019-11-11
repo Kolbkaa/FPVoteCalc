@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using VoteCalc.Logic;
-using VoteCalc.Model;
+﻿using System.Windows;
 using VoteCalc.Tools;
 using VoteCalc.ViewModel;
 
@@ -21,9 +7,9 @@ namespace VoteCalc
     /// <summary>
     /// Interaction logic for StatisticWindow.xaml
     /// </summary>
-    public partial class StatisticWindow : Window
+    public partial class StatisticWindow
     {
-        private StatisticViewModel _statisticModel;
+        private readonly StatisticViewModel _statisticModel;
         public StatisticWindow()
         {
             _statisticModel = new StatisticViewModel();
@@ -32,19 +18,13 @@ namespace VoteCalc
 
         }
 
-
-
         private void LogOff_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow loginWindows = new MainWindow();
-            loginWindows.Show();
             Logoff.LogoffToLogin();
-            
         }
         private void Chart_Click(object sender, RoutedEventArgs e)
         {
-            ChartWindow chartWindow = new ChartWindow();
-            chartWindow.ShowDialog();
+            new ChartWindow().ShowDialog();
         }
 
         private void ExportToCSV_Click(object sender, RoutedEventArgs e)

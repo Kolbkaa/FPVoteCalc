@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:VoteCalc"
         xmlns:vm="clr-namespace:VoteCalc.ViewModel"
         mc:Ignorable="d"
-        Title="VoteWindow" Width="500" ResizeMode="CanMinimize">
-    <StackPanel>
+        Title="VoteCalc - Vote" Width="500" MinWidth="400" x:ClassModifier="internal">
+    <ScrollViewer>
+    <StackPanel HorizontalAlignment="Center">
         <WrapPanel HorizontalAlignment="Right">
 
             <Button HorizontalAlignment="Right" Content="Statistic" Padding="10" Margin="10" Click="Statistic_Click"></Button>
             <Button HorizontalAlignment="Right" Content="Log off" Padding="10" Margin="10" Click="LogOff_Click"></Button>
         </WrapPanel>
-        
-        <ItemsControl Name="Candidate">
+
+        <ItemsControl Name="Candidate" ItemsSource="{Binding Path=Candidates}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" BorderBrush="SlateGray" Padding="2">
@@ -29,5 +30,6 @@
         </ItemsControl>
         <Button Margin="10" Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick"></Button>
 
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

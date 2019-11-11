@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 
 namespace VoteCalc.Tools
 {
-    public static class Logoff
+    internal static class Logoff
     {
         public static void LogoffToLogin()
         {
-            for (var i = 0; i < App.Current.Windows.Count; i++)
-                App.Current.Windows[0].Close();
+            new MainWindow().Show();
+
+            for (var i = 0; i < Application.Current.Windows.Count; i++)
+                Application.Current.Windows[0]?.Close();
         }
     }
 }

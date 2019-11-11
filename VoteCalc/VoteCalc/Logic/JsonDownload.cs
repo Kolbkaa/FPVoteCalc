@@ -26,13 +26,11 @@ namespace VoteCalc.Logic
                 }
                 catch (WebException e)
                 {
-
                     ErrorMessage.ShowError($"Download data error: {e.Status}");
                     return null;
-
                 }
 
-                return JsonConvert.DeserializeObject<T>(json);
+                return (T)JsonConvert.DeserializeObject<T>(json);
             }
 
         }

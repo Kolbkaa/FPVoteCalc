@@ -7,13 +7,13 @@ using VoteCalc.Logic;
 
 namespace VoteCalc.ViewModel
 {
-    public class StatisticViewModel
+    internal class StatisticViewModel
     {
         protected int _allValidVote;
         public string AllValidVote => $"Valid vote: {Math.Round(_allValidVote / (_allValidVote + (double)_allInvalidVote) * 100)}%";
 
         protected int _allInvalidVote;
-        public string AllInvalidVote => $"Invalid vote: {Math.Round((_allInvalidVote / (_allValidVote + (double)_allInvalidVote)) * 100)}%";
+        public string AllInvalidVote => $"Invalid vote: {Math.Round(_allInvalidVote / (_allValidVote + (double)_allInvalidVote) * 100)}%";
 
         public string AllVote => $"All vote: {_allInvalidVote + _allValidVote}";
 
@@ -41,7 +41,7 @@ namespace VoteCalc.ViewModel
                 var party = new ObservableCollection<KeyValuePair<string, string>>();
                 foreach (var keyValuePair in _partyStatistic.OrderByDescending(x => x.Value))
                 {
-                    party.Add(new KeyValuePair<string, string>(keyValuePair.Key, $"{Math.Round((keyValuePair.Value / ((double)_allValidVote)) * 100)}%"));
+                    party.Add(new KeyValuePair<string, string>(keyValuePair.Key, $"{Math.Round(keyValuePair.Value / (double)_allValidVote * 100)}%"));
                 }
 
                 return party;
@@ -98,7 +98,7 @@ namespace VoteCalc.ViewModel
 
             exportPdf.AddTextToFile("Party statistic:");
             exportPdf.AddTextToFile("");
-            exportPdf.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString())); ;
+            exportPdf.AddDataToFile(_partyStatistic.ToDictionary(x => x.Key, y => y.Value.ToString()));
             exportPdf.AddTextToFile("");
 
             exportPdf.Export();
