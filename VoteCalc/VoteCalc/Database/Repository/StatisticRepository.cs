@@ -46,7 +46,7 @@ namespace VoteCalc.Database.Repository
                 foreach (var candidate in candidateList)
                 {
                     if (dictionary.ContainsKey(candidate.Name)) continue;
-                    var count = dbContext.Vote.Count(x => x.CandidateEntity.Id == candidate.Id);
+                    var count = dbContext.Vote.Count(x => x.CandidateEntity.Id == candidate.Id && x.WithoutRight != true);
                     dictionary.Add(candidate.Name, count);
                 }
 
@@ -65,7 +65,7 @@ namespace VoteCalc.Database.Repository
                 {
                     if (dictionary.ContainsKey(candidate.Party)) continue;
 
-                    var count = dbContext.Vote.Where(x => x.CandidateEntity != null).Count(x => x.CandidateEntity.GetDecryptCandidate().Party == candidate.Party);
+                    var count = dbContext.Vote.Where(x => x.CandidateEntity != null && x.WithoutRight != true).Count(x => x.CandidateEntity.GetDecryptCandidate().Party == candidate.Party);
                     dictionary.Add(candidate.Party, count);
                 }
                 return dictionary;

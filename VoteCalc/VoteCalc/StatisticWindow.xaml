@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoteCalc"
         mc:Ignorable="d"
-        Title="VoteCalc - Statistic" Height="auto" Width="400" MinWidth="400">
+        Title="VoteCalc - Statistic" Height="auto" Width="600" MinWidth="400">
     <ScrollViewer Margin="10">
         <StackPanel HorizontalAlignment="Center" >
             <WrapPanel HorizontalAlignment="Right">
