@@ -26,7 +26,10 @@ namespace VoteCalc.ViewModel
                 var candidate = new ObservableCollection<KeyValuePair<string, string>>();
                 foreach (var keyValuePair in _candidateStatistic.OrderByDescending(x => x.Value))
                 {
-                    candidate.Add(new KeyValuePair<string, string>(keyValuePair.Key, $"{Math.Round(keyValuePair.Value / (double)_allValidVote * 100)}%"));
+                    candidate.Add(_allValidVote == 0
+                        ? new KeyValuePair<string, string>(keyValuePair.Key, "0%")
+                        : (new KeyValuePair<string, string>(keyValuePair.Key,
+                            $"{Math.Round(keyValuePair.Value / (double)_allValidVote * 100)}%")));
                 }
 
                 return candidate;
@@ -41,7 +44,10 @@ namespace VoteCalc.ViewModel
                 var party = new ObservableCollection<KeyValuePair<string, string>>();
                 foreach (var keyValuePair in _partyStatistic.OrderByDescending(x => x.Value))
                 {
-                    party.Add(new KeyValuePair<string, string>(keyValuePair.Key, $"{Math.Round(keyValuePair.Value / (double)_allValidVote * 100)}%"));
+                    party.Add(_allValidVote == 0
+                        ? new KeyValuePair<string, string>(keyValuePair.Key, "0%")
+                        : new KeyValuePair<string, string>(keyValuePair.Key,
+                            $"{Math.Round(keyValuePair.Value / (double)_allValidVote * 100)}%"));
                 }
 
                 return party;
