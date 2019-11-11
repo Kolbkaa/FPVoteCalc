@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="VoteCalc - Vote" Width="500" MinWidth="400" x:ClassModifier="internal">
     <ScrollViewer>
-    <StackPanel HorizontalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center">
         <WrapPanel HorizontalAlignment="Right">
 
             <Button HorizontalAlignment="Right" Content="Statistic" Padding="10" Margin="10" Click="Statistic_Click"></Button>
@@ -28,7 +28,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Margin="10" Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick" IsDefault="True"></Button>
+        <Button Margin="10" Padding="10" Content="Vote" HorizontalAlignment="Stretch" FontSize="15" Click="Vote_OnClick"></Button>
 
         </StackPanel>
     </ScrollViewer>

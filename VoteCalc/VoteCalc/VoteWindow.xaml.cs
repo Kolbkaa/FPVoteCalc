@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using VoteCalc.Database.Repository;
 using VoteCalc.Logic;
 using VoteCalc.Model;
@@ -94,6 +95,7 @@ namespace VoteCalc
             }
 
         }
+
     }
 
 }

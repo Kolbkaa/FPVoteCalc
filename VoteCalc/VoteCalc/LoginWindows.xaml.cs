@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using VoteCalc.Model;
 using VoteCalc.Tools;
 using VoteCalc.ViewModel;
