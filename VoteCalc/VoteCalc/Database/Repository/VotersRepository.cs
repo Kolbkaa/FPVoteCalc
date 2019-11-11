@@ -10,7 +10,7 @@ using VoteCalc.Model;
 
 namespace VoteCalc.Database.Repository
 {
-    class VotersRepository:Repository<Voter>
+    internal class VotersRepository:Repository<Voter>
     {
         public override List<Voter> GetAll()
         {

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Remotion.Linq.Parsing.Structure.IntermediateModel;
 
 namespace VoteCalc.Database.Repository
 {
-    class StatisticRepository
+    internal class StatisticRepository
     {
-
         public int CountAllValidVote()
         {
             using (var dbContext = new AppDbContext())
@@ -22,6 +17,14 @@ namespace VoteCalc.Database.Repository
             using (var dbContext = new AppDbContext())
             {
                 return dbContext.Vote.Count(x => !x.ValidVote);
+            }
+        }
+
+        public int CountAllWithoutRightVote()
+        {
+            using (var dbContext = new AppDbContext())
+            {
+                return dbContext.Vote.Count(x => x.WithoutRight);
             }
         }
 

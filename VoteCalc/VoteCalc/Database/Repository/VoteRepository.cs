@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VoteCalc.Database.Entity;
 using VoteCalc.Model;
 
@@ -27,6 +25,7 @@ namespace VoteCalc.Database.Repository
                 CandidateEntity candidate = null;
                 if (model.Candidate != null)
                     candidate = dbContext.Candidates?.SingleOrDefault(x => x.Id == model.Candidate.Id);
+
                 var voters = dbContext.Voters.Single(x => x.Id == model.Voters.Id);
                 dbContext.Vote.Add(new VoteEntity()
                 {

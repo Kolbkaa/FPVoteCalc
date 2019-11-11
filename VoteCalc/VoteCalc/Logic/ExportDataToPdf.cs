@@ -1,13 +1,9 @@
-﻿using System;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.EntityFrameworkCore.Design;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 
 namespace VoteCalc.Logic
 {
@@ -17,15 +13,15 @@ namespace VoteCalc.Logic
         private PdfPage _page;
         private XGraphics _gfx;
         private readonly XFont _font;
-        private int line = -350;
+        private int _line = -350;
 
         private int GetLine()
         {
-            var temp = line;
-            line += 20;
-            if (line > 350)
+            var temp = _line;
+            _line += 20;
+            if (_line > 350)
             {
-                line = -350;
+                _line = -350;
                 _page = AddPage();
                 _gfx = FromPdfPage();
             }
@@ -90,7 +86,7 @@ namespace VoteCalc.Logic
                 _document.Save(FilePath);
                 Process.Start(FilePath);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Error file export to pdf","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Navigation;
+﻿using System.Collections.Generic;
 using VoteCalc.Model;
 
 namespace VoteCalc.Logic
 {
-    class CandidateJsonData:JsonDownload<CandidateJsonData.RootObject>
+    internal class CandidateJsonData:JsonDownload<CandidateJsonData.RootObject>
     {
         protected internal CandidateJsonData() : base(@"http://webtask.future-processing.com:8069/candidates")
         {
@@ -16,18 +11,18 @@ namespace VoteCalc.Logic
         public List<Candidate> GetAll()
         {
             var jsonData = DownloadJson() as RootObject;
-            return jsonData?.candidates.candidate;
+            return jsonData?.Candidates.Candidate;
         }
 
         internal class Candidates
         {
-            public string publicationDate { get; set; }
-            public List<Candidate> candidate { get; set; }
+            public string PublicationDate { get; set; }
+            public List<Candidate> Candidate { get; set; }
         }
 
         internal class RootObject
         {
-            public Candidates candidates { get; set; }
+            public Candidates Candidates { get; set; }
         }
     }
     

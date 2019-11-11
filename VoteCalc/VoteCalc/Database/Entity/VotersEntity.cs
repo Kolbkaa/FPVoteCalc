@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VoteCalc.Logic;
+﻿using VoteCalc.Logic;
 using VoteCalc.Model;
 
 namespace VoteCalc.Database.Entity
 {
-    class VotersEntity : CryptData
+    internal class VotersEntity : CryptData
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

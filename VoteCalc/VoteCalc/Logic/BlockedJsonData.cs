@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VoteCalc.Logic
 {
-    class BlockedJsonData : JsonDownload<BlockedJsonData.RootObject>
+    internal class BlockedJsonData : JsonDownload<BlockedJsonData.RootObject>
     {
         public BlockedJsonData() : base(@"http://webtask.future-processing.com:8069/blocked")
         {
@@ -15,25 +12,25 @@ namespace VoteCalc.Logic
         public List<string> GetAll()
         {
             var jsonData = DownloadJson() as RootObject;
-            var blockedPesel = jsonData?.disallowed.person;
+            var blockedPesel = jsonData?.Disallowed.Person;
 
-            return blockedPesel?.Select(person => person.pesel)?.ToList();
+            return blockedPesel?.Select(person => person.Pesel)?.ToList();
         }
 
         internal class Person
         {
-            public string pesel { get; set; }
+            public string Pesel { get; set; }
         }
 
         internal class Disallowed
         {
-            public string publicationDate { get; set; }
-            public List<Person> person { get; set; }
+            public string PublicationDate { get; set; }
+            public List<Person> Person { get; set; }
         }
 
         internal class RootObject
         {
-            public Disallowed disallowed { get; set; }
+            public Disallowed Disallowed { get; set; }
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using VoteCalc.Logic;
 using VoteCalc.Model;
 using VoteCalc.Tools;
+using VoteCalc.ViewModel;
 
 namespace VoteCalc
 {

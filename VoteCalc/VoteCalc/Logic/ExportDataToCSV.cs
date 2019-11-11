@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.Win32;
 
 namespace VoteCalc.Logic
 {
@@ -26,8 +20,6 @@ namespace VoteCalc.Logic
                 StringBuilder.AppendLine($"\"{d.Key}\",\"{d.Value}\"");
             }
         }
-
-
 
     }
 }

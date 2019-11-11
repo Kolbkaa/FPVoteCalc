@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Newtonsoft.Json;
 using VoteCalc.Tools;
 
 namespace VoteCalc.Logic
@@ -23,7 +17,7 @@ namespace VoteCalc.Logic
             using (var webClient = new WebClient())
             {
                 webClient.Encoding = Encoding.UTF8;
-                string json = "";
+                string json;
 
                 try
                 {
@@ -38,7 +32,7 @@ namespace VoteCalc.Logic
 
                 }
 
-                return (T)JsonConvert.DeserializeObject<T>(json);
+                return JsonConvert.DeserializeObject<T>(json);
             }
 
         }
