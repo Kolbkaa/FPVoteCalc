@@ -26,7 +26,7 @@ namespace VoteCalc.Logic
                 }
                 catch (WebException e)
                 {
-                    ErrorMessage.ShowError($"Download data error: {e.Status}");
+                    ErrorMessage.ShowError($"Download data error.",e);
                     return null;
                 }
 

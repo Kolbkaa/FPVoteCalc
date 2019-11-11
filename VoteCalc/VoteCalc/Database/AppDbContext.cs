@@ -16,5 +16,13 @@ namespace VoteCalc.Database
                 
             base.OnConfiguring(optionsBuilder);
         }
+
+        public void CreateDB()
+        {
+            using (var dbContext = new AppDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+        }
     }
 }

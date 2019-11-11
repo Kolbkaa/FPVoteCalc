@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Xml;
+using System.Windows;
 using VoteCalc.Database.Entity;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 
 namespace VoteCalc.Database.Repository
 {
-    internal class VotersRepository:Repository<Voter>
+    internal class VotersRepository : Repository<Voter>
     {
         public override List<Voter> GetAll()
         {
@@ -24,31 +22,48 @@ namespace VoteCalc.Database.Repository
 
         public override void Save(Voter model)
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                var voter = new VotersEntity()
+                using (var dbContext = new AppDbContext())
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Pesel = model.Pesel
-                };
-                dbContext.Voters.Add(voter);
-                dbContext.SaveChanges();
-                model.Id = voter.Id;
+                    var voter = new VotersEntity()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Pesel = model.Pesel
+                    };
+                    dbContext.Voters.Add(voter);
+                    dbContext.SaveChanges();
+                    model.Id = voter.Id;
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
+
             }
         }
 
         public bool IsExist(Voter model)
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                var voter = new VotersEntity()
+                using (var dbContext = new AppDbContext())
                 {
-                    Pesel = model.Pesel
-                };
-                return dbContext.Voters.Select(x => x.Pesel).Contains(voter.Pesel);
+                    var voter = new VotersEntity()
+                    {
+                        Pesel = model.Pesel
+                    };
+                    return dbContext.Voters.Select(x => x.Pesel).Contains(voter.Pesel);
+                }
             }
-
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
+                return false;
+            }
         }
     }
 }

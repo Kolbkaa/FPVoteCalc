@@ -65,8 +65,14 @@ namespace VoteCalc.ViewModel
             _allValidVote = statisticRepository.CountAllValidVote();
             _allInvalidVote = statisticRepository.CountAllInvalidVote();
             _allVoteWithoutRight = statisticRepository.CountAllWithoutRightVote();
-            _candidateStatistic = new ObservableCollection<KeyValuePair<string, int>>(statisticRepository.CandidateStatistic());
-            _partyStatistic = new ObservableCollection<KeyValuePair<string, int>>(statisticRepository.PartyStatistic());
+
+            var candidateStatistic = statisticRepository.CandidateStatistic();
+            if (candidateStatistic != null)
+                _candidateStatistic = new ObservableCollection<KeyValuePair<string, int>>(candidateStatistic);
+
+            var partyStatistic = statisticRepository.PartyStatistic();
+            if (partyStatistic != null)
+                _partyStatistic = new ObservableCollection<KeyValuePair<string, int>>(partyStatistic);
 
         }
 

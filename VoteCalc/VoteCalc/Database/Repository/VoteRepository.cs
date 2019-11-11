@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using VoteCalc.Database.Entity;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 
 namespace VoteCalc.Database.Repository
 {
@@ -20,21 +22,29 @@ namespace VoteCalc.Database.Repository
 
         public override void Save(Vote model)
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                CandidateEntity candidate = null;
-                if (model.Candidate != null)
-                    candidate = dbContext.Candidates?.SingleOrDefault(x => x.Id == model.Candidate.Id);
-
-                var voters = dbContext.Voters.Single(x => x.Id == model.Voters.Id);
-                dbContext.Vote.Add(new VoteEntity()
+                using (var dbContext = new AppDbContext())
                 {
-                    CandidateEntity = candidate,
-                    ValidVote = model.ValidVote,
-                    WithoutRight = model.WithoutRight,
-                    VotersEntity = voters
-                });
-                dbContext.SaveChanges();
+                    CandidateEntity candidate = null;
+                    if (model.Candidate != null)
+                        candidate = dbContext.Candidates?.SingleOrDefault(x => x.Id == model.Candidate.Id);
+
+                    var voters = dbContext.Voters.Single(x => x.Id == model.Voters.Id);
+                    dbContext.Vote.Add(new VoteEntity()
+                    {
+                        CandidateEntity = candidate,
+                        ValidVote = model.ValidVote,
+                        WithoutRight = model.WithoutRight,
+                        VotersEntity = voters
+                    });
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
             }
         }
     }

@@ -9,7 +9,9 @@ namespace VoteCalc.ViewModel
         public VoteViewModel()
         {
             var candidateRepository = new CandidateRepository();
-            Candidates =new ObservableCollection<Candidate>(candidateRepository.GetAll());
+            var candidate = candidateRepository.GetAll();
+            if (candidate != null)
+                Candidates = new ObservableCollection<Candidate>(candidate);
         }
         public ObservableCollection<Candidate> Candidates { get; set; }
     }

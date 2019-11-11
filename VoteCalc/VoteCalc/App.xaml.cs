@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using VoteCalc.Database;
 using VoteCalc.Database.Repository;
 using VoteCalc.Logic;
+using VoteCalc.Tools;
 
 namespace VoteCalc
 {
@@ -14,24 +16,27 @@ namespace VoteCalc
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            using (var dbContext = new AppDbContext())
+            try
             {
-                dbContext.Database.Migrate();
-            }
+                new AppDbContext().CreateDB();
+                var candidateRepository = new CandidateRepository();
+                if (candidateRepository.IsAnyCandidate()) return;
 
-            var candidateRepository = new CandidateRepository();
-            if (candidateRepository.IsAnyCandidate()) return;
-
-            var candidateJsonData = new CandidateJsonData().GetAll();
-            if (candidateJsonData != null)
-            {
-                candidateRepository.AddAll(candidateJsonData);
+                var candidateJsonData = new CandidateJsonData().GetAll();
+                if (candidateJsonData != null)
+                {
+                    candidateRepository.AddAll(candidateJsonData);
+                }
+                else
+                {
+                    Current.Shutdown();
+                }
             }
-            else
+            catch (Exception exception)
             {
+                ErrorMessage.ShowError($"Can not connect to database.\n",exception);
                 Current.Shutdown();
             }
-
         }
     }
 }

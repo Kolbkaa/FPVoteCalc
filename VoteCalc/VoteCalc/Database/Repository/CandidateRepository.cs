@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using VoteCalc.Database.Entity;
 using VoteCalc.Model;
+using VoteCalc.Tools;
 
 namespace VoteCalc.Database.Repository
 {
@@ -10,28 +12,45 @@ namespace VoteCalc.Database.Repository
     {
         public override List<Candidate> GetAll()
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                var candidates = dbContext.Candidates;
+                using (var dbContext = new AppDbContext())
+                {
+                    var candidates = dbContext.Candidates;
 
-                return candidates.Select(candidate => candidate.GetDecryptCandidate()).ToList();
+                    return candidates.Select(candidate => candidate.GetDecryptCandidate()).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
+                return null;
             }
         }
 
         public override void AddAll(IList<Candidate> list)
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                foreach (var candidate in list)
+                using (var dbContext = new AppDbContext())
                 {
-                    dbContext.Candidates.Add(new CandidateEntity()
+                    foreach (var candidate in list)
                     {
-                        Name = candidate.Name,
-                        Party = candidate.Party
-                    });
-                }
+                        dbContext.Candidates.Add(new CandidateEntity()
+                        {
+                            Name = candidate.Name,
+                            Party = candidate.Party
+                        });
+                    }
 
-                dbContext.SaveChanges();
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
             }
         }
 
@@ -42,9 +61,18 @@ namespace VoteCalc.Database.Repository
 
         public bool IsAnyCandidate()
         {
-            using (var dbContext = new AppDbContext())
+            try
             {
-                return dbContext.Candidates.Any();
+                using (var dbContext = new AppDbContext())
+                {
+                    return dbContext.Candidates.Any();
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage.ShowError($"Can not connect to database.\n", exception);
+                Application.Current.Shutdown();
+                return false;
             }
         }
     }
